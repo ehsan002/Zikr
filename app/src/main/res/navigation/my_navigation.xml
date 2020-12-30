@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/dualist">
+    <fragment
+        android:id="@+id/dualist"
+        android:name="com.ehsanrc.zikr_update.view.Dualist"
+        android:label="fragment_dualist"
+        tools:layout="@layout/fragment_dualist" >
+        <action
+            android:id="@+id/actionDetails"
+            app:destination="@id/duaDetails" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/duaDetails"
+        android:name="com.ehsanrc.zikr_update.view.DuaDetails"
+        android:label="fragment_dua_details"
+        tools:layout="@layout/fragment_dua_details">
+
+
+        <argument
+            android:name="duaId"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+    </fragment>
+
+</navigation>
