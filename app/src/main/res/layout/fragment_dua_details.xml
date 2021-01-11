@@ -15,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_margin="8dp"
         android:padding="8dp"
+        android:textColor="@color/primaryDarkColor"
         android:textSize="20sp"
         />
 
@@ -29,9 +30,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#B9F3BC"
         android:maxLines="4"
         android:padding="8dp"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryLightColor"
+        android:alpha="58"
         android:text="Original Dua in arabic\nSomething\nSomething more\nSomething again"
         android:textSize="20sp" />
 
@@ -45,7 +48,9 @@
         android:padding="8dp"
         android:textSize="20sp"
         android:maxLines="4"
-        android:background="#B9F3BC"
+        android:alpha="58"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryLightColor"
         />
 
     <TextView
@@ -58,7 +63,9 @@
         android:padding="8dp"
         android:textSize="20sp"
         android:maxLines="4"
-        android:background="#B9F3BC"
+        android:alpha="58"
+        android:textColor="@color/secondaryTextColor"
+        android:background="@color/primaryLightColor"
         />
 
 </RelativeLayout>

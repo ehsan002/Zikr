@@ -22,6 +22,17 @@ public class Dua {
     @ColumnInfo(name = "dua_translation")
     public String duaTranslation;
 
+    @ColumnInfo(name = "favorite")
+    public boolean isFavorite;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
     public Dua(String duaTitle, String duaArabic, String duaPronunciation, String duaTranslation) {
 
         this.duaTitle = duaTitle;
@@ -29,4 +40,5 @@ public class Dua {
         this.duaPronunciation = duaPronunciation;
         this.duaTranslation = duaTranslation;
     }
+
 }

@@ -1,11 +1,13 @@
 package com.ehsanrc.zikr_update.view;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavDirections;
@@ -20,10 +22,15 @@ import java.util.List;
 
 public class DuaListAdapter extends RecyclerView.Adapter<DuaListAdapter.DuaViewHolder> {
 
-    private ArrayList<Dua> duaList;
+    private final String DUA_LIST_CLASS = "class com.ehsanrc.zikr_update.view.Dualist";
+    private final String FAVORITE_CLASS = "class com.ehsanrc.zikr_update.view.Favorites";
 
-    public DuaListAdapter(ArrayList<Dua> duaList) {
+    private final ArrayList<Dua> duaList;
+    private final String className;
+
+    public DuaListAdapter(ArrayList<Dua> duaList, String className) {
         this.duaList = duaList;
+        this.className = className;
     }
 
     public void updateList(List<Dua> newDuaList){
@@ -52,10 +59,18 @@ public class DuaListAdapter extends RecyclerView.Adapter<DuaListAdapter.DuaViewH
         duaTitle.setText(duaList.get(position).duaTitle);
         linearLayout.setOnClickListener(v -> {
 
-            DualistDirections.ActionDetails action = DualistDirections.actionDetails();
-            action.setDuaId(duaList.get(position).id);
-            Navigation.findNavController(linearLayout).navigate(action);
-
+            if (className.equals(DUA_LIST_CLASS)){
+                DualistDirections.ActionDetails action = DualistDirections.actionDetails();
+                action.setPosition(position);
+                action.setDuaId(duaList.get(position).id);
+                action.setFavorite(duaList.get(position).isFavorite);
+                Navigation.findNavController(linearLayout).navigate(action);
+            }else if(className.equals(FAVORITE_CLASS)){
+                FavoritesDirections.ActionDetailsFromFavorite action = FavoritesDirections.actionDetailsFromFavorite();
+                action.setDuaId(duaList.get(position).id);
+                action.setFavorite(duaList.get(position).isFavorite);
+                Navigation.findNavController(linearLayout).navigate(action);
+            }
         });
 
     }
@@ -65,7 +80,7 @@ public class DuaListAdapter extends RecyclerView.Adapter<DuaListAdapter.DuaViewH
         return duaList.size();
     }
 
-    class DuaViewHolder extends RecyclerView.ViewHolder{
+    static class DuaViewHolder extends RecyclerView.ViewHolder{
 
         public View itemView;
 

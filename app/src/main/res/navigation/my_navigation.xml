@@ -12,6 +12,43 @@
         <action
             android:id="@+id/actionDetails"
             app:destination="@id/duaDetails" />
+        <action
+            android:id="@+id/action_add_dua"
+            app:destination="@id/addDua" />
+        <argument
+            android:name="duaTitle"
+            app:argType="string"
+            android:defaultValue='" "' />
+        <argument
+            android:name="duaArabic"
+            app:argType="string"
+            android:defaultValue='" "' />
+        <argument
+            android:name="duaPronunciation"
+            app:argType="string"
+            android:defaultValue='" "' />
+        <argument
+            android:name="duaTranslation"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="toAdd"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="flagFromEdit"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/actionFavorites"
+            app:destination="@id/favorites" />
+        <argument
+            android:name="favorite"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_about"
+            app:destination="@id/about" />
 
     </fragment>
     <fragment
@@ -26,6 +63,100 @@
             app:argType="integer"
             android:defaultValue="0" />
 
+        <argument
+            android:name="flagFromEdit"
+            app:argType="integer"
+            android:defaultValue="-1" />
+
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="0" />
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="arabic"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="pronunciation"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="translation"
+            app:argType="string"
+            android:defaultValue='""' />
+
+        <action
+            android:id="@+id/actionDualistFromDetails"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/my_navigation"
+            app:popUpToInclusive="true"
+            app:destination="@id/dualist" />
+        <action
+            android:id="@+id/action_addDua_fromdetails"
+            app:destination="@id/addDua" />
+        <argument
+            android:name="favorite"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
     </fragment>
+    <fragment
+        android:id="@+id/addDua"
+        android:name="com.ehsanrc.zikr_update.view.AddDua"
+        android:label="fragment_add_dua"
+        tools:layout="@layout/fragment_add_dua" >
+        <action
+            android:id="@+id/action_dualist"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/my_navigation"
+            app:popUpToInclusive="true"
+            app:destination="@id/dualist" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="arabic"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="pronunciation"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="translation"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="favorite"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <!--        <action-->
+<!--            android:id="@+id/action_details_from_add"-->
+<!--            app:popUpToInclusive="true"-->
+<!--            app:destination="@id/duaDetails" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/favorites"
+        android:name="com.ehsanrc.zikr_update.view.Favorites"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_details_from_favorite"
+            app:destination="@id/duaDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/about"
+        android:name="com.ehsanrc.zikr_update.view.About"
+        android:label="About" />
 
 </navigation>

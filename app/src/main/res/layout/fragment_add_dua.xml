@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".view.AddDua">
+
+    <TextView
+        android:id="@+id/tvDuaTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textColor="@color/secondaryTextColor"
+        android:text="@string/dua_title" />
+
+    <TextView
+        android:id="@+id/tvDuaArabic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dua_arabic"
+        android:layout_margin="8dp"
+        android:textColor="@color/secondaryTextColor"
+        android:layout_below="@id/etDuaTitle"
+        />
+
+    <TextView
+        android:id="@+id/tvDuaPronunciation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etDuaArabic"
+        android:textColor="@color/secondaryTextColor"
+        android:text="@string/dua_pronunciation"
+        android:layout_margin="8dp" />
+
+    <TextView
+        android:id="@+id/tvDuaTranslation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etDuaPronunciation"
+        android:text="@string/dua_translation"
+        android:textColor="@color/secondaryTextColor"
+        android:layout_margin="8dp" />
+
+    <EditText
+        android:id="@+id/etDuaTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDuaTitle"
+        android:hint="@string/enter_title"
+        android:layout_margin="8dp" />
+
+    <EditText
+        android:id="@+id/etDuaArabic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDuaArabic"
+        android:hint="@string/enter_arabic"
+        android:layout_margin="8dp" />
+
+    <EditText
+        android:id="@+id/etDuaPronunciation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDuaPronunciation"
+        android:hint="@string/enter_pronunciation"
+        android:layout_margin="8dp" />
+
+    <EditText
+        android:id="@+id/etDuaTranslation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDuaTranslation"
+        android:hint="@string/enter_translation"
+        android:layout_margin="8dp" />
+
+</RelativeLayout>

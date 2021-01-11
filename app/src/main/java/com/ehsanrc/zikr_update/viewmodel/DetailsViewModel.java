@@ -14,7 +14,9 @@ import com.ehsanrc.zikr_update.model.DuaDatabase;
 public class DetailsViewModel extends AndroidViewModel {
 
     public MutableLiveData<Dua> duaMutableLiveData = new MutableLiveData<>();
-    AsyncTask<Integer, Void, Dua> relieveTask;
+    AsyncTask<Integer, Void, Dua> retrieveTask;
+    AsyncTask<Dua, Void, Void> deleteTask;
+    AsyncTask<Dua, Void, Void> updateFavoriteTask;
 
     public DetailsViewModel(@NonNull Application application) {
         super(application);
@@ -23,18 +25,33 @@ public class DetailsViewModel extends AndroidViewModel {
     public void fetch(int id){
 
         Log.i("Test", "Fetch is called");
-        relieveTask = new RetrieveDua();
-        relieveTask.execute(id);
+        retrieveTask = new RetrieveDua();
+        retrieveTask.execute(id);
 
+    }
+
+    public void deleteDua(Dua dua){
+        deleteTask = new DeleteDuaTask();
+        deleteTask.execute(dua);
+    }
+
+    public void updateFavorite(Dua dua){
+        updateFavoriteTask = new UpdateFavorite();
+        updateFavoriteTask.execute(dua);
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
 
-        if (relieveTask != null){
-            relieveTask.cancel(true);
-            relieveTask = null;
+        if (retrieveTask != null){
+            retrieveTask.cancel(true);
+            retrieveTask = null;
+        }
+
+        if (deleteTask != null){
+            deleteTask.cancel(true);
+            deleteTask = null;
         }
     }
 
@@ -54,6 +71,25 @@ public class DetailsViewModel extends AndroidViewModel {
         @Override
         protected void onPostExecute(Dua dua) {
             duaMutableLiveData.setValue(dua);
+        }
+    }
+
+    private class DeleteDuaTask extends AsyncTask<Dua, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Dua... duas) {
+            Dua dua = duas[0];
+            DuaDatabase.getInstance(getApplication()).duaDAO().delete(dua);
+            return null;
+        }
+    }
+
+    private class UpdateFavorite extends AsyncTask<Dua, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Dua... duas) {
+            DuaDatabase.getInstance(getApplication()).duaDAO().update(duas[0]);
+            return null;
         }
     }
 

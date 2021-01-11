@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        >
+
+        <TextView
+            android:id="@+id/tvAboutText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="58"
+            android:text="@string/about_text"
+            android:textColor="@color/primaryTextColor" />
+
+        <TextView
+            android:id="@+id/tvDevelopedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Developed By"
+            android:textColor="@color/primaryTextColor"
+            android:alpha="58"
+            android:layout_below="@id/tvAboutText"
+            android:textSize="25sp"
+            android:layout_margin="8dp"
+            android:gravity="center_horizontal"
+            android:background="@color/primaryLightColor"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_developedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDevelopedBy"
+            android:layout_centerHorizontal="true"
+            android:background="#fff"
+            android:src="@drawable/logo_rightclik" />
+
+        <Button
+            android:id="@+id/btn_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rate This"
+            android:textColor="@color/primaryTextColor"
+            android:alpha="58"
+            android:layout_below="@id/btn_developedBy"
+            android:textSize="25sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:background="@color/primaryLightColor" />
+
+    </RelativeLayout>
+
+</ScrollView>
