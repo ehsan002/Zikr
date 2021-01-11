@@ -38,7 +38,7 @@ public class About extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("এপ সম্পর্কে");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("অ্যাপ সম্পর্কে");
 
     }
 
