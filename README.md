@@ -2,7 +2,7 @@
 
 This application is a collection of prayers that Muslim people use in their day-to-day life. The whole app is in the Bangla language. Some features are mentioned:
 
-- Ten prayers have been provided by default
+- Some prayers have been provided by default
 - User can add their prayer, edit, and delete. 
 - Users can make a prayer favorite. 
 
