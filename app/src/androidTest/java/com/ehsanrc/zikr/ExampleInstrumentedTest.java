@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update;
+package com.ehsanrc.zikr;
 
 import android.content.Context;
 

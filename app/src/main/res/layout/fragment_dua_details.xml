@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.DuaDetails">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/duaName"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name of the Dua"
-        android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_margin="8dp"
-        android:padding="8dp"
-        android:textColor="@color/primaryDarkColor"
-        android:textSize="20sp"
-        />
+        android:layout_height="match_parent"
+        tools:context=".view.DuaDetails">
 
-    <TextView
-        android:id="@+id/duaArabic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/duaName"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:maxLines="4"
-        android:padding="8dp"
-        android:textColor="@color/secondaryTextColor"
-        android:background="@color/primaryLightColor"
-        android:alpha="58"
-        android:text="Original Dua in arabic\nSomething\nSomething more\nSomething again"
-        android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/duaPronunciation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pronunciation of the arabic text in Bangla\nSomething\nSomething more\nSomething again"
-        android:layout_below="@+id/duaArabic"
-        android:layout_margin="8dp"
-        android:padding="8dp"
-        android:textSize="20sp"
-        android:maxLines="4"
-        android:alpha="58"
-        android:textColor="@color/secondaryTextColor"
-        android:background="@color/primaryLightColor"
-        />
+        <TextView
+            android:id="@+id/duaName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Name of the Dua"
+            android:textColor="@color/primaryDarkColor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/duaTranslation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Bangla translation of the Dua\nSomething\nSomething more\nSomething again"
-        android:layout_below="@+id/duaPronunciation"
-        android:layout_margin="8dp"
-        android:padding="8dp"
-        android:textSize="20sp"
-        android:maxLines="4"
-        android:alpha="58"
-        android:textColor="@color/secondaryTextColor"
-        android:background="@color/primaryLightColor"
-        />
+        <TextView
+            android:id="@+id/duaArabic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/duaName"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="58"
+            android:background="@color/primaryLightColor"
+            android:padding="8dp"
+            android:text="Original Dua in arabic\nSomething\nSomething more\nSomething again"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="20sp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/duaPronunciation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/duaArabic"
+            android:layout_margin="8dp"
+            android:alpha="58"
+            android:background="@color/primaryLightColor"
+            android:padding="8dp"
+            android:text="Pronunciation of the arabic text in Bangla\nSomething\nSomething more\nSomething again"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/duaTranslation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/duaPronunciation"
+            android:layout_margin="8dp"
+            android:alpha="58"
+            android:background="@color/primaryLightColor"
+            android:padding="8dp"
+            android:text="Bangla translation of the Dua\nSomething\nSomething more\nSomething again"
+            android:textColor="@color/secondaryTextColor"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</ScrollView>
+

@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update.viewmodel;
+package com.ehsanrc.zikr.viewmodel;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ehsanrc.zikr_update.model.Dua;
-import com.ehsanrc.zikr_update.model.DuaDatabase;
+import com.ehsanrc.zikr.model.Dua;
+import com.ehsanrc.zikr.model.DuaDatabase;
 
 public class DetailsViewModel extends AndroidViewModel {
 

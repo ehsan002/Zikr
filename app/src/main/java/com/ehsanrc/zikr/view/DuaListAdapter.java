@@ -1,29 +1,25 @@
-package com.ehsanrc.zikr_update.view;
+package com.ehsanrc.zikr.view;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ehsanrc.zikr_update.R;
-import com.ehsanrc.zikr_update.model.Dua;
+import com.ehsanrc.zikr.R;
+import com.ehsanrc.zikr.model.Dua;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DuaListAdapter extends RecyclerView.Adapter<DuaListAdapter.DuaViewHolder> {
 
-    private final String DUA_LIST_CLASS = "class com.ehsanrc.zikr_update.view.Dualist";
-    private final String FAVORITE_CLASS = "class com.ehsanrc.zikr_update.view.Favorites";
+    private final String DUA_LIST_CLASS = "class com.ehsanrc.zikr.view.Dualist";
+    private final String FAVORITE_CLASS = "class com.ehsanrc.zikr.view.Favorites";
 
     private final ArrayList<Dua> duaList;
     private final String className;

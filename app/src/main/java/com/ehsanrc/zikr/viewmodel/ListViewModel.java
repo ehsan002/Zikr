@@ -1,69 +1,87 @@
-package com.ehsanrc.zikr_update.model;
+package com.ehsanrc.zikr.viewmodel;
 
-import android.content.Context;
+import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.room.migration.Migration;
-import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
-import com.ehsanrc.zikr_update.R;
-import com.ehsanrc.zikr_update.view.Dualist;
-import com.ehsanrc.zikr_update.view.MainActivity;
-import com.ehsanrc.zikr_update.viewmodel.ListViewModel;
+import com.ehsanrc.zikr.model.Dua;
+import com.ehsanrc.zikr.model.DuaDAO;
+import com.ehsanrc.zikr.model.DuaDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Database(entities = {Dua.class}, version = 2)
-public abstract class DuaDatabase extends RoomDatabase {
+public class ListViewModel extends AndroidViewModel {
 
-    private static DuaDatabase instance;
+    private AsyncTask<Dua, Void, Void> insertTask;
+    private AsyncTask<Dua, Void, Void> updateTask;
 
-    public static DuaDatabase getInstance(Context context){
-
-        if (instance == null){
-            instance = Room.databaseBuilder(
-                    context.getApplicationContext(),
-                    DuaDatabase.class,
-                    "dua_database")
-                    .addCallback(roomCallback)
-                    .addMigrations(MIGRATION_1_2)
-                    .build();
-        }
-        return instance;
+    public ListViewModel(@NonNull Application application) {
+        super(application);
     }
 
-    public abstract DuaDAO duaDAO();
+    public void insertSingleDua(Dua dua) {
+        insertTask = new InsertSingleDua();
+        insertTask.execute(dua);
+    }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+    public void updateDua(Dua dua){
+        updateTask = new UpdateDuaTask();
+        updateTask.execute(dua);
+    }
 
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
+    public LiveData<List<Dua>> refresh() {
 
-            new PopulateDbTask().execute();
+        Log.i("Test", "Refreshing\n");
+
+        DuaDAO duaDAO = DuaDatabase.getInstance(getApplication()).duaDAO();
+
+        return duaDAO.getAllDuas();
+    }
+
+    public LiveData<List<Dua>> getFavoriteDuas() {
+
+        Log.i("Test", "Favorites\n");
+
+        DuaDAO duaDAO = DuaDatabase.getInstance(getApplication()).duaDAO();
+
+        return duaDAO.getFavorites();
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+
+        if (insertTask != null) {
+            insertTask.cancel(true);
+            insertTask = null;
         }
-    };
 
-    private static class PopulateDbTask extends AsyncTask<Void, Void, Void> {
+        if (updateTask != null){
+            updateTask.cancel(true);
+            updateTask = null;
+        }
+    }
+
+    private class InsertSingleDua extends AsyncTask<Dua, Void, Void> {
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected Void doInBackground(Dua... duas) {
+            DuaDAO duaDAO = DuaDatabase.getInstance(getApplication()).duaDAO();
+            duaDAO.insert(duas[0]);
+            return null;
+        }
+    }
 
-            DuaDAO duaDAO = instance.duaDAO();
-            duaDAO.deleteAllDuas();
+    private class UpdateDuaTask extends AsyncTask<Dua, Void, Void>{
 
-
-            List<Dua> myDuas = addDuas();
-
-            for (Dua dua:myDuas){
-                duaDAO.insert(dua);
-            }
+        @Override
+        protected Void doInBackground(Dua... duas) {
+            DuaDatabase.getInstance(getApplication()).duaDAO().update(duas[0]);
             return null;
         }
     }
@@ -79,7 +97,10 @@ public abstract class DuaDatabase extends RoomDatabase {
                 "খাওয়ার শুরুতে",
                 "খাওয়ার শেষে",
                 "বিপদে পড়লে",
-                "ঘুমানোর আগে"};
+                "ঘুমানোর আগে",
+                "শির্কের ভয়ে দো‘আ",
+                "কঠিন কাজে পতিত ব্যক্তির দো‘আ",
+                "উপকারী জ্ঞান, পবিত্র রিযিক এবং \nকবুলযোগ্য আমলের দো'আ"};
 
         String[] duaArabic = {"الحَمْـدُ لِلّهِ الّذي أَحْـيانا بَعْـدَ ما أَماتَـنا وَإليه النُّـشور",
                 "اللَّهُمَّ إِنِّي أَعُوْذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِث" ,
@@ -90,7 +111,10 @@ public abstract class DuaDatabase extends RoomDatabase {
                 "بِسْمِ الله\\n بِسْمِ اللهِ في أَوَّلِهِ وَآخِـرِه",
                 "الْحَمْـدُ للهِ الَّذي أَطْعَمَنـي هـذا وَرَزَقَنـيهِ مِنْ غَـيْرِ حَوْلٍ مِنِّي وَلا قُوَّة",
                 "لَا إِلَهَ إِلَّا أنْـت سُـبْحانَكَ إِنِّي كُنْـتُ مِنَ الظّـالِميـن",
-                "بِاسْـمِكَ اللّهُـمَّ أَمـوتُ وَأَحْـيا>"};
+                "بِاسْـمِكَ اللّهُـمَّ أَمـوتُ وَأَحْـيا>",
+                "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أُشْرِكَ بِكَ وَأَنَا أَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا لاَ أَعْلَمُ",
+                "اللَّهُمَّ لاَ سَهْلَ إِلاَّ مَا جَعَلْتَهُ سَهْلاً، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلاً",
+                "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلً"};
 
         String[] duaPronunciation = {"উচ্চারণঃ আলহামদুলিল্লাহিল্লাযি আহইয়া না বা\'দামা আমা তানা ওয়া ইলাইহিন নুশুর",
                 "উচ্চারণঃ আল্লাহুম্মা ইন্নি আঊ\'যুবিকা মিনাল খুবসি ওয়াল খাবা-ইস",
@@ -101,7 +125,10 @@ public abstract class DuaDatabase extends RoomDatabase {
                 "উচ্চারণঃ বিসমিল্লাহ\nবিসমিল্লাহি ফি আওয়ালিহি ওয়া আখিরিহি(প্রথমে ভুলে গেলে)",
                 "উচ্চারণঃ আলহামদুলিল্লাহিল্লাযি আত \'আমানি হাযা ওয়া রাযাকানিহি মিন গাইরি হাওলিম্মিন্নি ওয়ালা ক্বুওয়াতিন",
                 "উচ্চারণঃ লা ইলাহা ইল্লা আনতা সুবহানাকা ইন্নি কুনতু মিনায যোয়ালিমিন",
-                "উচ্চারণঃ বিসমিকা আল্লাহুম্মা আমুতু ওয়া আহইয়া"};
+                "উচ্চারণঃ বিসমিকা আল্লাহুম্মা আমুতু ওয়া আহইয়া",
+                "উচ্চারণঃ আল্লা-হুম্মা ইন্নী আ‘ঊযু বিকা আন উশরিকা বিকা ওয়া ‘আনা আ‘লামু ওয়া আস্তাগফিরুকা লিমা লা আ‘লামু",
+                "উচ্চারণঃ আল্লা-হুম্মা লা সাহলা ইল্লা মা জা‘আলতাহু সাহলান, ওয়া আনতা তাজ্‘আলুল হাযনা ইযা শি’তা সাহলান",
+                "উচ্চারণঃ আল্লা-হুম্মা ইন্নী আস্আলুকা ‘ইলমান না-ফি‘আন্ ওয়া রিযকান ত্বায়্যিবান ওয়া ‘আমালান মুতাক্বাব্বালান"};
 
         String[] duaTranslation = {"অর্থঃ যাবতীয় প্রশংসা সেই আল্লাহর যিনি আমার (নিদ্রারূপ)মৃত্যুর পর আমাকে (পুনর্জাগরিত করে)জীবিত করলেন, আর তাঁর ই দরবারে সকলের পূনরুথান হবে।",
                 "অর্থঃ হে আল্লাহ, আমি তোমার কাছে অপবিত্র জিন নর ও নারীর (অনিষ্ট )থেকে আশ্রয় কামনা করি।",
@@ -112,7 +139,10 @@ public abstract class DuaDatabase extends RoomDatabase {
                 "অর্থঃ আল্লাহর নামে শুরু করছি, শুরুতে এবং শেষে।",
                 "অর্থঃ যাবতীয় প্রশংসা সেই আল্লাহর যিনি আমাকে এ পানাহার করালেন এবং উহার ক্ষমতা প্রদান করলেন, যাতে ছিলনা আমার পক্ষ থেকে উপায়-উদ্যোগ, ছিলনা কোন শক্তি-ক্ষমতা।",
                 "অর্থঃ তুমি ভিন্ন ইবাদাতের কোন উপাস্য নেই। তুমি পবিত্র। নিশ্চই আমি জালিমদের অন্তর্ভুক্ত।",
-                "অর্থঃ হে আল্লাহ, তোমার নাম নিয়েই আমি ঘুমাই এবং তোমার নাম নিয়েই জাগ্রত হব।"};
+                "অর্থঃ হে আল্লাহ, তোমার নাম নিয়েই আমি ঘুমাই এবং তোমার নাম নিয়েই জাগ্রত হব।",
+                "অর্থঃ হে আল্লাহ! আমি জ্ঞাতসারে আপনার সাথে শির্ক করা থেকে আপনার নিকট আশ্রয় চাই এবং অজ্ঞতাসারে (শির্ক) হয়ে গেলে তার জন্য ক্ষমা চাই।",
+                "অর্থঃ হে আল্লাহ! আপনি যা সহজ করেছেন তা ছাড়া কোনো কিছুই সহজ নয়। আর যখন আপনি ইচ্ছা করেন তখন কঠিনকেও সহজ করে দেন।",
+                "অর্থঃ হে আল্লাহ! আমি আপনার নিকট উপকারী জ্ঞান, পবিত্র রিযিক এবং কবুলযোগ্য আমল প্রার্থনা করি।"};
 
         ArrayList<Dua> myDuas = new ArrayList<>();
 
@@ -126,12 +156,4 @@ public abstract class DuaDatabase extends RoomDatabase {
 
         return myDuas;
     }
-
-    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL(
-                    "ALTER TABLE dua_table ADD COLUMN favorite INTEGER DEFAULT 0 NOT NULL");
-        }
-    };
 }

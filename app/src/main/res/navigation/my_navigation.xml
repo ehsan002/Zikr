@@ -6,7 +6,7 @@
     app:startDestination="@id/dualist">
     <fragment
         android:id="@+id/dualist"
-        android:name="com.ehsanrc.zikr_update.view.Dualist"
+        android:name="com.ehsanrc.zikr.view.Dualist"
         android:label="fragment_dualist"
         tools:layout="@layout/fragment_dualist" >
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/duaDetails"
-        android:name="com.ehsanrc.zikr_update.view.DuaDetails"
+        android:name="com.ehsanrc.zikr.view.DuaDetails"
         android:label="fragment_dua_details"
         tools:layout="@layout/fragment_dua_details">
 
@@ -107,7 +107,7 @@
     </fragment>
     <fragment
         android:id="@+id/addDua"
-        android:name="com.ehsanrc.zikr_update.view.AddDua"
+        android:name="com.ehsanrc.zikr.view.AddDua"
         android:label="fragment_add_dua"
         tools:layout="@layout/fragment_add_dua" >
         <action
@@ -147,7 +147,7 @@
     </fragment>
     <fragment
         android:id="@+id/favorites"
-        android:name="com.ehsanrc.zikr_update.view.Favorites"
+        android:name="com.ehsanrc.zikr.view.Favorites"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" >
         <action
@@ -156,7 +156,7 @@
     </fragment>
     <fragment
         android:id="@+id/about"
-        android:name="com.ehsanrc.zikr_update.view.About"
+        android:name="com.ehsanrc.zikr.view.About"
         android:label="About" />
 
 </navigation>

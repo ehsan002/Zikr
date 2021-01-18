@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update.model;
+package com.ehsanrc.zikr.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

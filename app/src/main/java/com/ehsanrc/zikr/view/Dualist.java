@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update.view;
+package com.ehsanrc.zikr.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,9 +18,9 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ehsanrc.zikr_update.R;
-import com.ehsanrc.zikr_update.model.Dua;
-import com.ehsanrc.zikr_update.viewmodel.ListViewModel;
+import com.ehsanrc.zikr.R;
+import com.ehsanrc.zikr.model.Dua;
+import com.ehsanrc.zikr.viewmodel.ListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

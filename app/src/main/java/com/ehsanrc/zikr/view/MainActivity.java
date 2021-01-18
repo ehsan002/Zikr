@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update.view;
+package com.ehsanrc.zikr.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.customview.widget.Openable;
@@ -8,7 +8,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
-import com.ehsanrc.zikr_update.R;
+import com.ehsanrc.zikr.R;
 
 public class MainActivity extends AppCompatActivity {
 

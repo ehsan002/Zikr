@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update.view;
+package com.ehsanrc.zikr.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ehsanrc.zikr_update.R;
-import com.ehsanrc.zikr_update.viewmodel.ListViewModel;
+import com.ehsanrc.zikr.R;
+import com.ehsanrc.zikr.viewmodel.ListViewModel;
 
 import java.util.ArrayList;
 

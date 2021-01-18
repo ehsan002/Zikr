@@ -1,6 +1,5 @@
-package com.ehsanrc.zikr_update.view;
+package com.ehsanrc.zikr.view;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,9 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
-import com.ehsanrc.zikr_update.R;
-import com.ehsanrc.zikr_update.model.Dua;
-import com.ehsanrc.zikr_update.viewmodel.DetailsViewModel;
+import com.ehsanrc.zikr.R;
+import com.ehsanrc.zikr.model.Dua;
+import com.ehsanrc.zikr.viewmodel.DetailsViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update.model;
+package com.ehsanrc.zikr.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

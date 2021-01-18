@@ -1,4 +1,4 @@
-package com.ehsanrc.zikr_update.view;
+package com.ehsanrc.zikr.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.ehsanrc.zikr_update.R;
+import com.ehsanrc.zikr.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
