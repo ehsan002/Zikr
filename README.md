@@ -6,7 +6,7 @@ This application is a collection of prayers that Muslim people use in their day-
 - User can add their prayer, edit, and delete. 
 - Users can make a prayer favorite. 
 
-This application was first published in the google play store in 2015. This project is an update of that project. 
+This application was first published in the google play store in 2015. This project is an update of that project. [Here](https://play.google.com/store/apps/details?id=com.ehsanrc.zikr) is the play store link of the app.
 
 The purpose of this project is to practice MVVM architecture and Modern Android Development. 
 
@@ -16,3 +16,4 @@ The libraries that have been used in this project are:
  - Room
  - Live data
  - Butterknife
+
